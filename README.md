@@ -14,7 +14,7 @@
 
 **GitHub Repository URL: https://github.com/upenn-embedded/final-project-f25-f25_final_project_t12_tri-state_buffers**
 
-**GitHub Pages Website URL:** [for final submission]*
+**GitHub Pages Website URL:** [NeuroTouch Website](https://neurotouch.streamlit.app/)
 
 ## Final Project Proposal
 
@@ -189,8 +189,7 @@ Answer : Yes we have almost achieved all of our Software Requirements. Only the 
 1. Show how you collected data and the outcomes.
 
    When we were collecting the data from our sensors, we used an ADC in order to convert the values ot a readable scale.
-
-5. Have you achieved some or all of your Hardware Requirements Specification (HRS)?
+2. Have you achieved some or all of your Hardware Requirements Specification (HRS)?
 
 Answer : Yes we have achieved all of our Hardware requirements. We also tried using the esewing thread to tie the lilypad sensor to the glove. But as the threads were pretty thin, there were cases that it would catch fire because of shorting. Apart from this, we also tried and reducued the number of wires by soldering wherever it was possible ans using a pretty small breadboard. All the sensors, were stuck to the glove using fabric glue and superglue in order to keep the connections intact.
 
@@ -207,8 +206,7 @@ Answer : Until now the riskiest part of our project was using the e-sewing threa
 1. How do you plan to de-risk this?
 
    In order to reduce multiple connections, Professor Nick and Kevin have suggested us to solder the wires as well so that the connectins would be relatively a lot more sturdy and the chances of the components to have a loose connection would be lesser.
-
-8. What questions or help do you need from the teaching team?
+2. What questions or help do you need from the teaching team?
 
 Answer : No, we dont have any questions as such for now. Thank you for helping us out!
 
@@ -216,6 +214,11 @@ Answer : No, we dont have any questions as such for now. Thank you for helping u
 
 Don't forget to make the GitHub pages public website!
 If you’ve never made a GitHub pages website before, you can follow this webpage (though, substitute your final project repository for the GitHub username one in the quickstart guide):  [https://docs.github.com/en/pages/quickstart](https://docs.github.com/en/pages/quickstart)
+
+
+Instead of using GitHub pages for making our website we ahve used Streamlit. 
+
+This is the link to our website : [NeuroTouch Website](https://neurotouch.streamlit.app/)
 
 ### 1. Video
 
@@ -227,7 +230,9 @@ If you’ve never made a GitHub pages website before, you can follow this webpag
 * Points will be removed if the audio quality is poor - say, if you filmed your video in a noisy electrical engineering lab.
 
  **Watch the Project Video**
-[Click here to watch the demo](https://drive.google.com/file/d/13vbfn8hnNr2GC25JTEiT3OvhRhjJhm64/view?usp=drive_link)
+Google Drive : [Click here to watch the demo](https://drive.google.com/file/d/13vbfn8hnNr2GC25JTEiT3OvhRhjJhm64/view?usp=drive_link)
+
+YouTube : [YouTube Link](https://www.youtube.com/watch?v=Nd8sG4NLBmw)
 
 ### 2. Images
 
@@ -311,7 +316,7 @@ Reflect on your project. Some questions to address:
 ## References
 
 Fill in your references here as you work on your final project. Describe any libraries used here.
-Libraries used : 
+Libraries used :
 uart.h handles the configuration and operation of UART serial communication on the microcontroller, allowing data to be sent and received reliably. It enables communication with external devices such as Bluetooth modules or a PC and is essential for wireless telemetry and real-time monitoring.
 
 LCD_GFX.h provides graphics utility functions that allow drawing shapes, text and UI elements on the TFT screen. It simplifies low-level pixel manipulation and is used to render your emoji-based interface, indicators and other visual elements.
