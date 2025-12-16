@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroTouch - Smart Haptic Glove</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">NeuroTouch<span style="color:var(--accent-cyan)">.</span></div>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#system">System</a></li>
+                    <li><a href="#specs">Specs</a></li>
+                    <li><a href="#sprints">Journey</a></li>
+                    <li><a href="#results">Results</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-content">
+                <h1>Restoring Touch with <br>Digital Intelligence</h1>
+                <p class="tagline">A Smart Haptic Glove for Congenital Insensitivity to Pain (CIPA)</p>
+                <div style="margin-top: 2rem;">
+                    <p><strong>Team #12: Tri-State Buffers</strong></p>
+                    <p style="font-size: 0.9rem; margin-top: -1rem;"> Anushka Jain • Ananya Shivarama Bhat • Devanshi
+                        Kalpeshbhai Patel</p>
+                </div>
+                <a href="#about" class="btn">Explore the Project</a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="container">
+            <h2>Abstract & Motivation</h2>
+            <div class="card">
+                <h3>The Problem</h3>
+                <p>Individuals with <strong>Congenital Insensitivity to Pain with Anhidrosis (CIPA)</strong> lack the
+                    ability to feel pain, temperature, or touch. Everyday tasks such as olding a hot object or
+                    applying too much pressure can become hazardous by causing severe injury without realization.</p>
+            </div>
+            <div class="card">
+                <h3>Our Solution</h3>
+                <p>We propose a <strong>Smart Haptic Glove</strong> that restores safe sensory awareness. By translating
+                    real-world stimuli into intelligent haptic feedback, the glove allows users to <em>feel</em>
+                    pressure and temperature through controlled vibrations.</p>
+                <p>Powered by the <strong>ATmega328PB</strong>, it integrates FSR force sensors, MCP9700 temperature
+                    sensors, and ERM haptic motors into a low-power and wearable assistive device.</p>
+            </div>
+        </section>
+
+        <!-- System Section -->
+        <section id="system" class="container">
+            <h2>System Architecture</h2>
+            <p>Our design combines analog sensing, PWM motor control and real-time OLED visualization.</p>
+
+            <div class="card">
+                <h3>Block Diagram</h3>
+                <img src="images/Block_diagram.png" alt="System Block Diagram"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div
+                    style="display:none; background: rgba(0,0,0,0.3); padding: 2rem; border-radius: 8px; text-align: center; border: 1px dashed var(--text-secondary);">
+                    <p style="color: var(--text-secondary);">[System Block Diagram]</p>
+                    <p style="font-size: 0.8rem; margin-top: 0.5rem;">Image missing: images/Block_diagram.png</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Design Vision</h3>
+                <p>We anticipate a sleek, ergonomic form factor.</p>
+                <img src="images/Design_Sketch.png" alt="Design Sketch"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div
+                    style="display:none; background: rgba(0,0,0,0.3); padding: 2rem; border-radius: 8px; text-align: center; border: 1px dashed var(--text-secondary);">
+                    <p style="color: var(--text-secondary);">[Design Sketch]</p>
+                    <p style="font-size: 0.8rem; margin-top: 0.5rem;">Image missing: images/Design_Sketch.png</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Specifications Section -->
+        <section id="specs" class="container">
+            <h2>Technical Specifications</h2>
+
+            <h3>Software Requirements (SRS)</h3>
+            <p>The firmware continuously samples sensors (20Hz+), performs threshold detection, and manages power
+                states.</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>SRS ID</th>
+                            <th>Objective</th>
+                            <th>Specifications</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Configure ATmega328PBMCU</td>
+                            <td>16 MHz clock, UART @ 9600 baud, LED + haptic GPIO</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>DC for MCP9700 Temperature Sensor</td>
+                            <td>ADC0 sampled every 500 ms (2 Hz)</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>ADC for Force Sensor (FSR)</td>
+                            <td>ADC1 sampled every 500 ms (2 Hz)</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Proximity Sensor (APDS9960)</td>
+                            <td>I²C PDATA register read every 500 ms (2 Hz)</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>LCD Display (ST7735 TFT)</td>
+                            <td>Update screen every 500ms (2Hz)</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Haptic Feedback Motor</td>
+                            <td>Trigger triple vibration for force alert; continuous vibration for temperature alert
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Wireless Transmission</td>
+                            <td>Use HC-05 (changed from ESP32), send telemetry every 500 ms (2 Hz)</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Tempresture Threshold</td>
+                            <td>Trigger BURN alert if Temp > 35 °C for ≥5 seconds</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Force Threshold</td>
+                            <td>Trigger OUCH alert at ~7-8 N equivalent force (≈70% ADC)</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>Proximity Threshold</td>
+                            <td>Detect unsafe closeness</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>Unified Polling Architecture</td>
+                            <td>No interrupts; single 500 ms loop governs entire system</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>System Integration & Power</td>
+                            <td>Run all modules from 5 V USB, stable grounding</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Hardware Requirements (HRS)</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>HRS ID</th>
+                            <th>Objective</th>
+                            <th>Specifications</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Configure ATmega328PB MCU</td>
+                            <td>16 MHz clock, 5 V operation, UART and GPIO configuration</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Hardware support for temperature sensing</td>
+                            <td>MCP9700 connected to ADC0; sampled every 500 ms (2 Hz)</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Hardware Support for force sensing</td>
+                            <td>FSR connected to ADC1; sampled every 500 ms</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Integrate APDS9960 proximity sensor</td>
+                            <td>I²C interface; read PDATA register every 500 ms</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Configure ST7735 LCD hardware</td>
+                            <td>SPI display updates every 500ms</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Configure haptic feedback motor</td>
+                            <td>Motor powered via PD7 with safe driver; triggered by sensor thresholds</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Provide wireless communication</td>
+                            <td>HC-05 Bluetooth module at 9600 baud (changed from ESP32)</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Ensure safe temperature thresholding</td>
+                            <td>Trigger BURN warning above 35 °C</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Ensure safe force thresholding</td>
+                            <td>FSR voltage mapping enables detection around 7-8 N equivalent force.</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>Maintain stable system power</td>
+                            <td>5 V USB supply powering MCU, sensors, LCD, Bluetooth</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>Unify all hardware timing</td>
+                            <td>Entire system operates off a 500 ms polling loop</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>Integrate all hardware into glove</td>
+                            <td>Proper grounding, wiring, fastening and module positioning</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Sprint/Journey Section -->
+        <section id="sprints" class="container">
+            <h2>Development Journey</h2>
+            <div class="card">
+                <h3>Challenges & Solutions</h3>
+                <div style="display: grid; gap: 1.5rem;">
+                    <div style="border-left: 2px solid var(--accent-purple); padding-left: 1rem;">
+                        <h4 style="color: #fff; margin-bottom: 0.2rem;">Electrical Safety & Form Factor</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);"><strong>Challenge:</strong> Early
+                            prototypes utilized conductive e-sewing thread for a seamless wearable look. However, the
+                            thread created dangerous short circuits and potential fire hazards due to the glove's
+                            flexibility.</p>
+                        <p style="font-size: 0.9rem;"><strong>Solution:</strong> We pivoted to a hard-wired approach
+                            using soldered connections. This sacrificed some aesthetic minimalism for
+                            <strong>non-negotiable safety and reliability</strong>, ensuring consistent power delivery
+                            without shorting risks.
+                        </p>
+                    </div>
+
+                    <div style="border-left: 2px solid var(--accent-cyan); padding-left: 1rem;">
+                        <h4 style="color: #fff; margin-bottom: 0.2rem;">Signal Integrity & Noise</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);"><strong>Challenge:</strong>
+                            Activating the haptic motors introduced significant noise into the power rail, corrupting
+                            the sensitive ADC readings from force and temperature sensors.</p>
+                        <p style="font-size: 0.9rem;"><strong>Solution:</strong> We implemented a unified <strong>2Hz
+                                polling architecture</strong> to separate sensor acquisition from motor actuation and
+                            added decoupling capacitors. This ensured clean signal processing even during active haptic
+                            feedback.</p>
+                    </div>
+
+                    <div style="border-left: 2px solid var(--accent-purple); padding-left: 1rem;">
+                        <h4 style="color: #fff; margin-bottom: 0.2rem;">Wireless Optimization</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);"><strong>Challenge:</strong> The
+                            initial ESP32 integration required complex voltage regulation (3.3V) and consumed excessive
+                            power for our battery-operated goals.</p>
+                        <p style="font-size: 0.9rem;"><strong>Solution:</strong> We replaced it with an <strong>HC-05
+                                Bluetooth module</strong>. This simplified the power architecture (running directly off
+                            5V) and proved sufficient for our low-bandwidth telemetry requirements.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Final Demo Results</h3>
+            <p>The system successfully provides two modes of feedback:</p>
+            <ol style="margin-left: 1.5rem; color: var(--text-secondary);">
+                <li style="margin-bottom: 0.5rem;"><strong>Local Tactile:</strong> Immediate vibration for hazards.</li>
+                <li><strong>Remote Visualization:</strong> Live data dashboard.</li>
+            </ol>
+            <div style="margin-top: 2rem;">
+                <a href="https://drive.google.com/file/d/13vbfn8hnNr2GC25JTEiT3OvhRhjJhm64/view?usp=drive_link"
+                    target="_blank" class="btn">Watch Final Demo Video</a>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="results" class="container">
+            <h2>Project Outcome</h2>
+            <p>We created a fully functional wearable that detects environmental cues and translates them into real-time
+                sensations.</p>
+
+            <div class="card">
+                <h3>Live Dashboard Analytics</h3>
+                <p>In addition to local haptic feedback, our system streams data live to a web dashboard. This wireless
+                    telemetry matches the serial terminal output, ensuring that remote monitoring is as accurate as
+                    direct debugging.</p>
+                <p>The chart below demonstrates the <strong>real-time converted readings</strong> from our force and
+                    temperature sensors, proving the stability and responsiveness of our data pipeline.</p>
+                <img src="images/Live_Sensor_Chart.png" alt="Live Sensor Data Chart"
+                    style="width: 100%; border-radius: 8px; border: 1px solid var(--text-secondary); margin-top: 1rem;"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div
+                    style="display:none; background: rgba(0,0,0,0.3); padding: 2rem; border-radius: 8px; text-align: center; border: 1px dashed var(--text-secondary);">
+                    <p style="color: var(--text-secondary);">[Live Sensor Chart]</p>
+                    <p style="font-size: 0.8rem; margin-top: 0.5rem;">Image missing: images/Live_Sensor_Chart.png</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Final Product</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem;">
+                    <img src="images/glove_image_1.jpg" alt="Glove Image 1" style="width: 100%; border-radius: 8px;">
+                    <img src="images/glove_image_2.jpg" alt="Glove Image 2" style="width: 100%; border-radius: 8px;">
+                </div>
+                <div class="card">
+                    <h3>Verification & Validation</h3>
+                    <p>The NeuroTouch system underwent extensive validation to ensure reliability in real-world
+                        scenarios. We rigorously tested for thermal accuracy, pressure sensitivity, and response latency
+                        to guarantee user safety.</p>
+                    <p>Our tests confirmed that the device successfully distinguishes between safe interactions and
+                        hazardous stimuli, triggering immediate haptic feedback within <strong>50ms</strong> of
+                        detection. Long-duration stability tests further verified that our unified polling architecture
+                        maintains consistent operation without power drift or system resets.</p>
+
+                    <div class="table-container" style="margin-top: 2rem;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Metric</th>
+                                    <th>Performance Outcome</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Hazard Response</strong></td>
+                                    <td>Instant haptic feedback (< 50ms) for hazards> 35°C or > 8N force.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>System Stability</strong></td>
+                                    <td>100% uptime during steady-state testing on 5V supply.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Detection Accuracy</strong></td>
+                                    <td>Reliable identification of unsafe pressure and temperature levels.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Key Learnings & Reflections</h3>
+                    <div style="display: grid; gap: 2rem;">
+                        <div>
+                            <h4
+                                style="color: var(--accent-purple); margin-bottom: 0.5rem; border-left: 3px solid var(--accent-cyan); padding-left: 10px;">
+                                The Reality of Hardware Integration</h4>
+                            <p style="font-size: 0.95rem; opacity: 0.9;">Transitioning from simulation to physical
+                                implementation revealed the intricacies of signal noise, power management, and
+                                mechanical constraints. We mastered the challenge of stabilizing ADC readings while
+                                simultaneously driving haptic motors and maintaining wireless UART telemetry.</p>
+                        </div>
+                        <div>
+                            <h4
+                                style="color: var(--accent-purple); margin-bottom: 0.5rem; border-left: 3px solid var(--accent-cyan); padding-left: 10px;">
+                                Safety-First Engineering</h4>
+                            <p style="font-size: 0.95rem; opacity: 0.9;">Designing for users with CIPA required a shift
+                                in mindset—prioritizing fail-safe mechanisms over complexity. This drove our decision to
+                                pivot from e-sewing to robust soldered connections and to simplify our wireless stack,
+                                ensuring that the device's core safety features could never be compromised.</p>
+                        </div>
+                        <div>
+                            <h4
+                                style="color: var(--accent-purple); margin-bottom: 0.5rem; border-left: 3px solid var(--accent-cyan); padding-left: 10px;">
+                                Adaptive Problem Solving</h4>
+                            <p style="font-size: 0.95rem; opacity: 0.9;">Our journey was defined by iterative
+                                improvement. When initial sensor placements proved inconsistent, we redesigned the
+                                glove's layout. When wireless modules complicated the power budget, we optimized our
+                                telemetry approach. These pivots underscored the importance of flexibility in embedded
+                                systems design.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="team" class="container">
+            <h2>Meet the Team</h2>
+            <div class="card" style="text-align: center;">
+                <h3>Tri-State Buffers</h3>
+                <p>Team #12</p>
+                <img src="images/Team_Photo.jpeg" alt="Team Photo"
+                    style="width: 100%; max-width: 800px; border-radius: 8px; margin-top: 1rem;"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div
+                    style="display:none; background: rgba(0,0,0,0.3); padding: 2rem; border-radius: 8px; text-align: center; border: 1px dashed var(--text-secondary); margin: 0 auto; max-width: 800px;">
+                    <p style="color: var(--text-secondary);">[Team Photo]</p>
+                    <p style="font-size: 0.8rem; margin-top: 0.5rem;">Image missing: images/Team_Photo.jpeg</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 NeuroTouch - Team 12 Tri-State Buffers</p>
+            <p style="font-size: 0.8rem; margin-top: 0.5rem;">University of Pennsylvania - ESE Embedded Systems</p>
+            <div style="margin-top: 1rem;">
+                <a href="https://github.com/upenn-embedded/final-project-f25-f25_final_project_t12_tri-state_buffers"
+                    target="_blank" style="margin: 0 10px;">GitHub Repo</a>
+                <a href="https://neurotouch.streamlit.app/" target="_blank" style="margin: 0 10px;">Streamlit App</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
